@@ -23,7 +23,7 @@ Ensure you have the following installed:
 
 ### Setup Instructions
 1. Clone the repository:
-   git clone https://github.com/yourusername/schoolPro.git
+   git clone https://github.com/Collins-Okyere/schoolPro.git
    cd schoolPro
 
 2. Create and activate a virtual environment:
@@ -33,17 +33,13 @@ Ensure you have the following installed:
 3. Install dependencies:
    pip install -r requirements.txt
 
-<!-- 4. Configure the database in 'settings.py':python
+4. Configure the database in 'settings.py':python
    DATABASES = {
-       'default': {
-           'ENGINE': 'django.db.backends.mysql',
-           'NAME': '',
-           'USER': '',
-           'PASSWORD': '',
-           'HOST': 'localhost',
-           'PORT': '3306',
-       }
-   } -->
+      'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': BASE_DIR / 'db.sqlite3',
+      }
+   }
 
 5. Apply database migrations:
    python manage.py migrate
