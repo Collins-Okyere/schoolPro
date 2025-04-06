@@ -1,0 +1,38 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SchoolPro | {% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        {% tailwind_css %}
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+
+    <body class="min-h-screen">
+
+        <!-- Navbar -->
+        <nav class="bg-indigo-700 text-white p-4 flex h-16 justify-between items-center">
+            
+            <div class="max-w-6xl flex justify-between space-x-16">
+                <a href="{% url 'authentication:logout' %}" class="text-lg font-bold">SchoolPro</a>
+            </div>   
+
+            <!-- Right Side Navbar (Auth) -->
+            <div  class="text-sm font-medium">
+                <a href="{% url 'authentication:logout' %}" title="Registration" class="px-3 hover:underline">Login</a> |
+                <a href="{% url 'authentication:register' %}" title="Registration" class="px-3 hover:underline">Register</a>
+            </div>
+
+        </nav>
+
+        <!-- Main Content -->
+        <div class="mx-auto bg-white">
+            {% block content %}{% endblock %}
+        </div>
+
+    </body>
+</html>
+    

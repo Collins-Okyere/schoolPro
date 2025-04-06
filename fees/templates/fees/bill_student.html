@@ -1,1 +1,44 @@
-Bill Student Page
+{% extends "app_shell.html" %}
+
+{% block title %}Bill Student{% endblock %}
+
+{% block content %}
+<div class="p-6 bg-gray-100 min-h-screen max-w-2xl mx-auto">
+
+  <a href="{% url 'fees:list' %}" class="text-blue-600 hover:underline">&larr; Back</a>
+
+  <div class="bg-white p-6 rounded-2xl shadow-md mt-4">
+
+    <h2 class="text-2xl font-bold mb-6">Bill a Student</h2>
+
+    <form action="{% url 'fees:save_bill'%}" method="POST" class="space-y-4">
+      {% csrf_token %}
+      
+      <div class="mb-4">
+        <label for="student" class="block text-sm font-medium text-gray-700">Select Student</label>
+        <select name="student" class="mt-1 block w-full px-4 py-2 cursor-pointer border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+          <option value="" disabled selected>Select a student</option>
+          {% for student in students %}
+            <option value="{{ student.id }}">{{ student.first_name }} {{ student.last_name }} - {{ student.student_id }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      
+      
+      <div class="mb-4">
+        <label for="amount" class="block text-sm font-medium text-gray-700">Amount</label>
+        <input type="number" name="amount" required class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+
+      <div class="mb-4">
+        <label for="due_date" class="block text-sm font-medium text-gray-700">Due Date</label>
+        <input type="date" name="due_date" required class="mt-1 block w-full cursor-pointer px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+      </div>
+
+      <button type="submit" class="w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        Bill Student
+      </button>
+    </form>
+
+  </div>
+{% endblock %}

@@ -1,1 +1,69 @@
-List Courses Page
+{% extends "app_shell.html" %} 
+
+{% block title %}Courses{% endblock %}
+
+{% block content %}
+  <div class="p-6 max-w-4xl mx-auto bg-white shadow-md rounded-xl">
+    
+    <div class="flex justify-between items-center m-4">
+
+      <h2 class="text-2xl font-bold">All Courses</h2>
+
+      <a href="{% url 'courses:add' %}" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"> + Add Course </a>
+
+    </div>
+
+    <div>
+      <table class="w-full bg-white m-1 table-auto">
+
+        <thead class="bg-gray-100">
+          <tr class="items-center table-row">
+
+            <th class="px-6 py-3 text-left tracking-wider">Name</th>
+
+            <th class="px-6 py-3 text-left tracking-wider">Code</th>
+
+            <th class="px-4 py-2 text-right">Actions</th>
+
+          </tr>
+        </thead>
+
+        <tbody class="divide-y divide-gray-100">
+
+          {% for course in courses %}
+
+            <tr class="fitems-center table-row">
+
+              <td class="px-6 py-4 whitespace-nowrap text-lef tracking-wider">{{ course.name }}</td>
+
+              <td class="px-6 py-4 whitespace-nowrap text-left tracking-wider">{{ course.code }}</td>
+
+              <td class="px-4 py-2 space-x-2 text-right">
+
+                <a href="{% url 'courses:view' course.pk %}" class="text-blue-600 hover:underline">View</a> |
+
+                <a href="{% url 'courses:edit' course.pk %}" class="text-yellow-600 hover:underline">Edit</a> |
+
+                <form action="{% url 'courses:delete' course.pk %}" method="POST" class="inline" onsubmit="return confirm('Delete this class?');">
+                  {% csrf_token %}
+                  <button class="text-red-600 hover:underline">Delete</button>
+                </form>
+
+              </td>
+
+            </tr>
+
+          {% empty %}
+
+            <tr><td colspan="2" class="px-6 py-4 whitespace-nowrap text-gray-500">No course found.</td></tr>
+
+          {% endfor %}
+
+        </tbody>
+
+      </table>
+      
+    </div>
+
+  </div>
+{% endblock %}

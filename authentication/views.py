@@ -1,23 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
 # Create your views here.
-def index(request):
-    return render(request, 'authentication/login.html')
-
-def password(request):
-    return render(request, 'authentication/change_password.html', {})
-
-def new_user(request):
-    return render(request, 'authentication/create_user.html')
 
 def login(request):
+    return redirect('dashboard:index')
 
-    return render(request, 'dashboard/dashboard.html', {})
 
-def change_password(request):
+def register(request):
+    return render(request, 'authentication/register.html')
 
-    return render(request, 'authentication/login.html')
-
-def create_user(request):
-
+def logout(request):
     return render(request, 'authentication/login.html')

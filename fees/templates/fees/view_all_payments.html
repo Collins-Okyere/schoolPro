@@ -1,0 +1,37 @@
+{% extends "app_shell.html" %}
+
+{% block title %}View Payments{% endblock %}
+
+{% block content %}
+  <div class="p-6 bg-gray-100 min-h-screen mx-auto">
+
+    <a href="{% url 'fees:list' %}" class="text-blue-600 hover:underline">&larr; Back</a>
+
+    <div class="bg-white p-6 rounded-2xl shadow-md mt-4">
+      <h2 class="text-2xl font-bold mb-6">All Payments</h2>
+
+      <!-- Payments List Table -->
+      <table class="min-w-full bg-gray-300 border border-gray-300">
+        <thead>
+          <tr class="text-left">
+            <th class="py-2 px-4 border-b">Student Name</th>
+            <th class="py-2 px-4 border-b">Amount Paid</th>
+            <th class="py-2 px-4 border-b">Payment Date</th>
+            <th class="py-2 px-4 border-b">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for payment in payments %}
+            <tr>
+              <td class="py-2 px-4 border-b">{{ payment.student.first_name }} {{ payment.student.last_name }}</td>
+              <td class="py-2 px-4 border-b">GHS {{ payment.amount }}</td>
+              <td class="py-2 px-4 border-b">{{ payment.date }}</td>
+              <td class="py-2 px-4 border-b">{{ payment.status }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+{% endblock %}

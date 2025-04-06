@@ -1,0 +1,55 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SchoolPro | {% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        {% tailwind_css %}
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+
+    <body>
+
+        <nav class="bg-indigo-700 text-white p-4 flex h-16 justify-between items-center">
+            
+            <div class="max-w-6xl flex justify-between space-x-16">
+                <a href="{% url 'dashboard:index' %}" class="text-lg font-bold">SchoolPro</a>
+                <div>
+                    <a href="{% url 'dashboard:index' %}" title="Dashboard" class="px-3 hover:underline">Dashboard</a>
+                    <a href="{% url 'classrooms:list' %}" title="Posts" class="px-3 hover:underline">Classes</a>
+                    <a href="{% url 'courses:list' %}" title="Posts" class="px-3 hover:underline">Courses</a>
+                    <a href="{% url 'students:list' %}" title="Posts" class="px-3 hover:underline">Students</a>
+                    <a href="{% url 'fees:list' %}" title="Registration" class="px-3 hover:underline">Fees</a>
+                </div>
+            </div>   
+
+            <!-- Right Side Navbar (Auth) -->
+            <div  class="text-sm font-medium">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle flex justify-end items-center space-x-1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            <img src="https://img.freepik.com/premium-photo/person-with-blue-shirt-back-blue-circle_1322703-7518.jpg?w=740" alt="Profile" class="rounded-circle h-8 w-8">
+                            <span>{{ user.username }}</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a href="/admin/" class="dropdown-item" >Admin Site</a></li>
+                            <li><a href="{% url 'authentication:logout' %}" class="dropdown-item" >Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+
+        <div class="mx-auto  bg-gray-100 min-h-screen p-6">
+            {% block content %}{% endblock %}
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+</html>
+    

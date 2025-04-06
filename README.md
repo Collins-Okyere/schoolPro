@@ -1,16 +1,17 @@
 # SchoolPro - School Management System
 
 ## Overview
-SchoolPro is a backend system designed to streamline school management processes. Built with Django and MySQL, it provides essential functionalities for managing students, courses, enrollments, and manual fee payments.
+SchoolPro is designed to streamline school management processes.
+Built with Django and MySQL, it provides essential functionalities for managing students, courses and manual fee payments.
 
 ## Features
+- Dashboard
 - Student Management: CRUD operations for student records.
 - Course Management: Add, update, and remove courses.
-- Student-Course Enrollment: Manage student registrations for courses.
 - Manual Fee Payments: Track and process student fee payments manually.
 
 ## Technologies Used
-- Backend: Django (Python)
+- Django (Python) + Tailwindcss
 - Database: MySQL
 - API Framework: Django REST Framework (DRF)
 
@@ -20,6 +21,8 @@ Ensure you have the following installed:
 - Python (>=3.8)
 - MySQL
 - pip & virtualenv
+- Tailwindcss:
+   guide (https://django-tailwind.readthedocs.io/en/latest/installation.html)
 
 ### Setup Instructions
 1. Clone the repository:
@@ -50,19 +53,13 @@ Ensure you have the following installed:
 7. Run the development server:
    python manage.py runserver
 
-
 ## API Endpoints
-- Students: '/api/students/'
-- Courses: '/api/courses/'
-- Enrollments: '/api/enrollments/'
-- Payments: '/api/payments/'
+- Dashboard: 'dashboard'
+- Students: 'students/'
+- Courses: 'courses/'
+- Fees: 'fees/'
 
-## Contributing
-Contributions are welcome! Feel free to submit a pull request or open an issue.
-
-## License
-This project is licensed under the MIT License.
 
 ## Contact
-For inquiries or support, reach out at: [cagyeiokyere@gmail.com]
+For inquiries, reach out at: [cagyeiokyere@gmail.com]
 

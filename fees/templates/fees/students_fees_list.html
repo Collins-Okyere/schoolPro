@@ -1,0 +1,51 @@
+{% extends "app_shell.html" %}
+
+{% block title %}Fees{% endblock %}
+
+{% block content %}
+
+  <div class="mb-4 flex justify-end space-x-2">
+    <a href="{% url 'fees:view_payments' %}" class="btn btn-primary">View Payments</a>
+    <a href="{% url 'fees:bill_student' %}" class="btn btn-primary">Bill Student</a>
+  </div>
+
+  <div class="bg-white p-6 rounded-2xl shadow-md">
+    
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Student Fees</h2>
+
+    <table class="w-full bg-white m-1 table-auto">
+      <thead>
+        <tr class="items-center table-row bg-gray-100">
+          <th class="px-6 py-3 text-left tracking-wider">Student Name</th>
+          <th class="px-6 py-3 text-left tracking-wider">Bill Amount</th>
+          <th class="px-6 py-3 text-left tracking-wider">Amount Paid</th>
+          <th class="px-6 py-3 text-left tracking-wider">Balance</th>
+          <th class="px-6 py-3 text-left tracking-wider">Status</th>
+          <th class="px-4 py-2 text-right">Actions</th>
+        </tr>
+      </thead>
+    
+      <tbody class="divide-y divide-gray-100">
+        {% for student_fee in student_fees %}
+          <tr class="items-center table-row">
+            <td class="px-6 py-4 whitespace-nowrap text-left tracking-wider">{{ student_fee.student.first_name }} {{ student_fee.student.last_name }}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-left tracking-wider">{{ student_fee.bill }}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-left tracking-wider">{{ student_fee.amount_paid }}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-left tracking-wider">{{ student_fee.balance }}</td>
+            <td class="px-6 py-4 whitespace-nowrap text-left tracking-wider">{{ student_fee.status }}</td>
+            <td class="px-4 py-2 space-x-2 text-right">
+              <a href="{% url 'fees:view_fee' student_fee.student.id %}" class="text-blue-600 hover:underline">View</a> |
+              <a href="{% url 'fees:pay_fee' student_fee.student.id %}" class="text-yellow-600 hover:underline">Pay</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="6" class="px-6 py-4 whitespace-nowrap text-center text-gray-500">No students found.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+  </div>
+  
+{% endblock %}

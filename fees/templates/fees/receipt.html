@@ -1,1 +1,37 @@
-Receipt Page
+{% extends "app_shell.html" %} 
+
+{% block title %}Fees{% endblock %}
+
+{% block content %}
+  <div class="p-6 max-w-3xl mx-auto">
+
+    <a href="{% url 'fees:list' %}" class="text-blue-600 hover:underline m-2">&larr; Back</a>
+
+
+    <div class="p-6 bg-white rounded-xl mt-2">
+
+    <h2 class="text-2xl font-bold mb-6 text-center">Fee Payment Receipt</h2>
+
+
+    <div class="mb-6">
+      <p><strong>Receipt No.:</strong> {{ payment.id }}</p>
+    </div>
+
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold">Student Details</h3>
+      <p><strong>Name:</strong> {{ payment.student.first_name }} {{ payment.student.last_name }}</p>
+      <p><strong>Student ID:</strong> {{ payment.student.student_id }}</p>
+      <p><strong>Class:</strong> {{ payment.student.classroom }}</p>
+    </div>
+
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold">Payment Details</h3>
+      <p><strong>Amount Paid:</strong> GHS {{ payment.amount }}</p>
+      <p><strong>Payment Method:</strong> {{ payment.mode_of_payment }}</p>
+      <p><strong>Payment Date:</strong> {{ payment.date}}</p>
+    </div>
+
+  </div>
+
+  </div>
+{% endblock %}
